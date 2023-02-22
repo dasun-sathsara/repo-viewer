@@ -19,13 +19,23 @@ class GithubAuthPage extends ConsumerStatefulWidget {
 
 class _GithubAuthPageState extends ConsumerState<GithubAuthPage> {
   late WebViewController _controller;
+  late WebViewCookieManager _cookieManager;
+  var _isLoading = true;
 
   @override
   void initState() {
+    _cookieManager = WebViewCookieManager();
+
+    _cookieManager.clearCookies();
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..loadRequest(widget.authorizationUrl)
       ..setNavigationDelegate(NavigationDelegate(
+        onPageFinished: (url) {
+          setState(() {
+            _isLoading = false;
+          });
+        },
         onNavigationRequest: (request) {
           if (request.url.startsWith(GithubAuthenticator.redirectUrl.toString())) {
             widget.onAuthorizationCodeRedirectAttempt(Uri.parse(request.url));
@@ -43,7 +53,9 @@ class _GithubAuthPageState extends ConsumerState<GithubAuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: WebViewWidget(controller: _controller)),
+      body: SafeArea(
+          child:
+              _isLoading ? const Center(child: CircularProgressIndicator()) : WebViewWidget(controller: _controller)),
     );
   }
 }

@@ -21,8 +21,8 @@ class AppWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(initializationProvider, (_, __) {});
 
-    ref.listen(authNotifierProvider, (previous, next) {
-      next.maybeMap(
+    ref.listen(authNotifierProvider, (previous, newState) {
+      newState.maybeMap(
           orElse: () {},
           authenticated: (_) {
             appRouter.pushAndPopUntil(const StarredReposRoute(), predicate: (route) => false);

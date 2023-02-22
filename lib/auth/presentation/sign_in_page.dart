@@ -1,7 +1,12 @@
+import 'dart:async';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:repoviewer/auth/shared/providers.dart';
+import 'package:repoviewer/core/presentation/routes/app_router.gr.dart';
 
 class SignInPage extends ConsumerWidget {
   const SignInPage({super.key});
@@ -27,7 +32,19 @@ class SignInPage extends ConsumerWidget {
                 height: 32,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  ref.read(authNotifierProvider.notifier).signIn((authorizationUrl) {
+                    final completer = Completer<Uri>();
+
+                    context.router.push(GithubAuthRoute(
+                        authorizationUrl: authorizationUrl,
+                        onAuthorizationCodeRedirectAttempt: (redirectUrl) {
+                          completer.complete(redirectUrl);
+                        }));
+
+                    return completer.future;
+                  });
+                },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.green, minimumSize: const Size.fromHeight(40)),
                 child: Text(
                   'Sign In',
