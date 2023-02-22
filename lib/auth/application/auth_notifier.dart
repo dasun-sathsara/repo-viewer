@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:repoviewer/auth/domain/auth_failure.dart';
+import '../domain/auth_failure.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:repoviewer/auth/infrastructure/github_authenticator.dart';
+import '../infrastructure/github_authenticator.dart';
 
 part 'auth_notifier.freezed.dart';
 

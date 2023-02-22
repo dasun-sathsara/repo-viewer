@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:oauth2/oauth2.dart';
-import 'package:repoviewer/auth/domain/auth_failure.dart';
-import 'package:repoviewer/core/shared/encoders.dart';
+import '../domain/auth_failure.dart';
+import '../../core/shared/encoders.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'credentials_storage/credentials_storage.dart';
