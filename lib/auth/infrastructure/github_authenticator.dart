@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:oauth2/oauth2.dart';
-import '../domain/auth_failure.dart';
-import '../../core/shared/encoders.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import '../../core/shared/encoders.dart';
+import '../domain/auth_failure.dart';
 import 'credentials_storage/credentials_storage.dart';
 
 class GithubOAuthHttpClient extends http.BaseClient {

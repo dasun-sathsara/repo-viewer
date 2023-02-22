@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:repoviewer/auth/shared/providers.dart';
-import 'package:repoviewer/core/presentation/routes/app_router.gr.dart';
+
+import '../../core/presentation/routes/app_router.gr.dart';
+import '../shared/providers.dart';
 
 class SignInPage extends ConsumerWidget {
   const SignInPage({super.key});

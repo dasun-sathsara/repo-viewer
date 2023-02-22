@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '../infrastructure/github_authenticator.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../infrastructure/github_authenticator.dart';
 
 class GithubAuthPage extends ConsumerStatefulWidget {
   final Uri authorizationUrl;
