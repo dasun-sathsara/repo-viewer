@@ -21,18 +21,21 @@ dependencies:
     fpdart: ^0.4.0
     freezed_annotation: ^2.2.0
     google_fonts: ^4.0.3
-    json_annotation:
+    json_annotation: ^4.8.0
     hooks_riverpod: ^2.2.0
     http: ^0.13.5
     material_design_icons_flutter: ^6.0.7096
     oauth2: ^2.0.1
     webview_flutter: ^4.0.2
+    sembast: ^3.4.0+6
+    json_serializable: ^6.6.1
+    path_provider: ^2.0.13
+    path: ^1.8.2
 
 dev_dependencies:
     auto_route_generator: ^5.0.3
     build_runner: ^2.3.3
     flutter_lints: ^2.0.0
-    json_serializable:
     flutter_test:
         sdk: flutter
     freezed: ^2.3.2
