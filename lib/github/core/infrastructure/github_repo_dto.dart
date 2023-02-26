@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:repoviewer/github/core/infrastructure/user_dto.dart';
+import 'user_dto.dart';
 
 import '../domain/github_repo.dart';
 
