@@ -8,6 +8,7 @@ import 'package:oauth2/oauth2.dart';
 import '../../core/shared/encoders.dart';
 import '../domain/auth_failure.dart';
 import 'credentials_storage/credentials_storage.dart';
+import '../../core/infrastructure/dio_extension.dart';
 
 class GithubOAuthHttpClient extends http.BaseClient {
   final httpClient = http.Client();
@@ -76,15 +77,22 @@ class GithubAuthenticator {
   }
 
   Future<Either<AuthFailure, Unit>> signOut() async {
-    final accessToken = await _credentialStorage.read().then((credentials) => credentials?.accessToken);
-    final usernameAndPassword = stringToBase64.encode('$clientId:$clientSecret');
-
     try {
-      _dio.deleteUri(revocationEndpoint,
-          data: {'access_token': accessToken},
-          options: Options(
-            headers: {'Authorization': 'basic $usernameAndPassword'},
-          ));
+      final accessToken = await _credentialStorage.read().then((credentials) => credentials?.accessToken);
+      final usernameAndPassword = stringToBase64.encode('$clientId:$clientSecret');
+
+      try {
+        _dio.deleteUri(revocationEndpoint,
+            data: {'access_token': accessToken},
+            options: Options(
+              headers: {'Authorization': 'basic $usernameAndPassword'},
+            ));
+      } on DioError catch (e) {
+        if (e.isNoConnectionError) {
+        } else {
+          rethrow;
+        }
+      }
 
       await _credentialStorage.clear();
       return right(unit);
