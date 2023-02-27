@@ -22,7 +22,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   AuthNotifier(this._authenticator) : super(const AuthState.initial());
 
-  Future<void> chechAndUpdateAuthStatus() async {
+  Future<void> checkAndUpdateAuthStatus() async {
     state = (await _authenticator.isSignedIn()) ? const AuthState.authenticated() : const AuthState.unauthenticated();
   }
 
@@ -39,4 +39,6 @@ class AuthNotifier extends StateNotifier<AuthState> {
     final failureOrSuccess = await _authenticator.signOut();
     state = failureOrSuccess.fold((l) => AuthState.failure(l), (r) => const AuthState.unauthenticated());
   }
+
+  
 }

@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,8 +10,13 @@ import 'routes/app_router.gr.dart';
 final initializationProvider = FutureProvider<void>((ref) async {
   await dotenv.load(fileName: '.env');
   await ref.read(sembastProvider).init();
+
+  ref.watch(dioProvider)
+    ..options = BaseOptions(headers: {'Accept': 'application/vnd.github.v3.html+json'})
+    ..interceptors.add(ref.read(oAuth2InterceptorProvider));
+
   final authNotifer = ref.read(authNotifierProvider.notifier);
-  await authNotifer.chechAndUpdateAuthStatus();
+  await authNotifer.checkAndUpdateAuthStatus();
 });
 
 class AppWidget extends ConsumerWidget {
