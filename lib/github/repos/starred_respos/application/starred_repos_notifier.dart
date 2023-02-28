@@ -38,11 +38,11 @@ class StarredReposNotifier extends StateNotifier<StarredReposState> {
 
     final failureOrRepos = await _repository.getStarredReposPage(_page);
 
-    failureOrRepos.fold(
+    state = failureOrRepos.fold(
       (l) => state = StarredReposState.loadFailure(state.repos, l),
       (r) {
         _page++;
-        state = StarredReposState.loadSuccess(r.copyWith(entity: [...state.repos.entity, ...r.entity]),
+        return StarredReposState.loadSuccess(r.copyWith(entity: [...state.repos.entity, ...r.entity]),
             isNextPageAvailable: r.isNextPageAvailable ?? false);
       },
     );

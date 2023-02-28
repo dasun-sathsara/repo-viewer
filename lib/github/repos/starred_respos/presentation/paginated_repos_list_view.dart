@@ -15,11 +15,41 @@ class PaginatedReposListView extends ConsumerStatefulWidget {
 }
 
 class _PaginatedReposListViewState extends ConsumerState<PaginatedReposListView> {
+  var canLoadNextPage = false;
+
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(starredReposNotifierProvider);
+    ref.listen(starredReposNotifierProvider, (_, newState) {
+      newState.map(
+        initial: (value) {
+          canLoadNextPage = true;
+        },
+        loadInProgress: (value) {
+          canLoadNextPage = false;
+        },
+        loadSuccess: (value) {
+          canLoadNextPage = value.isNextPageAvailable;
+        },
+        loadFailure: (value) {
 
-    return _PaginatedListView(state: state);
+          canLoadNextPage = false;
+        },
+      );
+    });
+
+    return NotificationListener<ScrollNotification>(
+        onNotification: (notification) {
+          final metrics = notification.metrics;
+          final limit = metrics.maxScrollExtent - (metrics.viewportDimension / 3);
+
+          if (canLoadNextPage && metrics.pixels >= limit) {
+            canLoadNextPage = false;
+            ref.read(starredReposNotifierProvider.notifier).getNextStarredReposPage();
+          }
+          return false;
+        },
+        child: _PaginatedListView(state: state));
   }
 }
 
