@@ -21,7 +21,8 @@ UserDTO _$UserDTOFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserDTO {
   @JsonKey(name: 'login')
-  String get name => throw _privateConstructorUsedError;
+  String get name =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'avatar_url')
   String get avatarUrl => throw _privateConstructorUsedError;
 
@@ -121,6 +122,7 @@ class _$_UserDTO extends _UserDTO {
   @override
   @JsonKey(name: 'login')
   final String name;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'avatar_url')
   final String avatarUrl;
@@ -170,7 +172,7 @@ abstract class _UserDTO extends UserDTO {
   @override
   @JsonKey(name: 'login')
   String get name;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'avatar_url')
   String get avatarUrl;
   @override

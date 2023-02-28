@@ -12,8 +12,9 @@ class GithubRepoDTO with _$GithubRepoDTO {
   const factory GithubRepoDTO({
     required UserDTO owner,
     required String name,
-    @JsonKey(defaultValue: '') required String description,
-    @JsonKey(name: 'stargazers_count') required int stargazersCount,
+    @JsonKey(defaultValue: '') required String description, // ignore: invalid_annotation_target
+
+    @JsonKey(name: 'stargazers_count') required int stargazersCount, // ignore: invalid_annotation_target
   }) = _GithubRepoDTO;
 
   factory GithubRepoDTO.fromJson(Map<String, dynamic> json) => _$GithubRepoDTOFromJson(json);

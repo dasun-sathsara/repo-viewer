@@ -23,7 +23,8 @@ mixin _$GithubRepoDTO {
   UserDTO get owner => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   @JsonKey(defaultValue: '')
-  String get description => throw _privateConstructorUsedError;
+  String get description =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'stargazers_count')
   int get stargazersCount => throw _privateConstructorUsedError;
 
@@ -170,6 +171,7 @@ class _$_GithubRepoDTO extends _GithubRepoDTO {
   @override
   @JsonKey(defaultValue: '')
   final String description;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'stargazers_count')
   final int stargazersCount;
@@ -231,7 +233,7 @@ abstract class _GithubRepoDTO extends GithubRepoDTO {
   @override
   @JsonKey(defaultValue: '')
   String get description;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'stargazers_count')
   int get stargazersCount;
   @override

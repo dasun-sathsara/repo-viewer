@@ -49,7 +49,7 @@ class SignInPage extends ConsumerWidget {
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.green, minimumSize: const Size.fromHeight(40)),
                 child: Text(
                   'Sign In',
-                  style: GoogleFonts.roboto(fontSize: 18),
+                  style: GoogleFonts.roboto(fontSize: 18, color: Theme.of(context).colorScheme.onPrimary),
                 ),
               )
             ],

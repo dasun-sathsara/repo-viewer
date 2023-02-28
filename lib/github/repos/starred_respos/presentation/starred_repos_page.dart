@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:repoviewer/auth/shared/providers.dart';
-import 'package:repoviewer/github/core/shared/providers.dart';
+import '../../../../auth/shared/providers.dart';
+import '../../../core/shared/providers.dart';
+import 'paginated_repos_list_view.dart';
 
 class StarredReposPage extends ConsumerStatefulWidget {
   const StarredReposPage({super.key});
@@ -14,8 +15,8 @@ class StarredReposPage extends ConsumerStatefulWidget {
 class _StarredReposPageState extends ConsumerState<StarredReposPage> {
   @override
   void initState() {
-    ref.read(starredReposNotifierProvider.notifier).getNextStarredReposPage();
     super.initState();
+    Future.microtask(() => ref.read(starredReposNotifierProvider.notifier).getNextStarredReposPage());
   }
 
   @override
@@ -31,6 +32,7 @@ class _StarredReposPageState extends ConsumerState<StarredReposPage> {
               icon: const Icon(MdiIcons.logoutVariant))
         ],
       ),
+      body: const PaginatedReposListView(),
     );
   }
 }
