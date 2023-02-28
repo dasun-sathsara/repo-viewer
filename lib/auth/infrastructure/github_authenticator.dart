@@ -5,10 +5,10 @@ import 'package:fpdart/fpdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:oauth2/oauth2.dart';
 
+import '../../core/infrastructure/dio_extension.dart';
 import '../../core/shared/encoders.dart';
 import '../domain/auth_failure.dart';
 import 'credentials_storage/credentials_storage.dart';
-import '../../core/infrastructure/dio_extension.dart';
 
 class GithubOAuthHttpClient extends http.BaseClient {
   final httpClient = http.Client();

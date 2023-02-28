@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import '../../../github/repos/starred_respos/presentation/starred_repos_page.dart';
 
 import '../../../auth/presentation/auth_page.dart';
 import '../../../auth/presentation/sign_in_page.dart';
 import '../../../splash/presentation/splash_page.dart';
-import '../../../starred_repos/presentation/starred_page.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',

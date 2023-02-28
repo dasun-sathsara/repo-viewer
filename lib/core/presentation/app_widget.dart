@@ -12,7 +12,10 @@ final initializationProvider = FutureProvider<void>((ref) async {
   await ref.read(sembastProvider).init();
 
   ref.watch(dioProvider)
-    ..options = BaseOptions(headers: {'Accept': 'application/vnd.github.v3.html+json'})
+    ..options = BaseOptions(
+      headers: {'Accept': 'application/vnd.github.v3.html+json'},
+      validateStatus: (status) => status != null && status >= 200 && status <= 400,
+    )
     ..interceptors.add(ref.read(oAuth2InterceptorProvider));
 
   final authNotifer = ref.read(authNotifierProvider.notifier);
@@ -42,6 +45,7 @@ class AppWidget extends ConsumerWidget {
     return MaterialApp.router(
       title: 'Repo Viewer',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(useMaterial3: true),
       routerDelegate: appRouter.delegate(),
       routeInformationParser: appRouter.defaultRouteParser(),
     );
