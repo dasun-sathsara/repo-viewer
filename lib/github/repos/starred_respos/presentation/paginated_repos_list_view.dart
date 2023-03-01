@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:repoviewer/github/repos/starred_respos/application/starred_repos_notifier.dart';
-import 'package:repoviewer/github/repos/starred_respos/presentation/failure_repo_tile.dart';
-import '../../../core/shared/providers.dart';
-import 'repo_tile.dart';
 
+import '../../../core/presentation/no_results_page.dart';
+import '../../../core/shared/providers.dart';
+import '../application/starred_repos_notifier.dart';
+import 'failure_repo_tile.dart';
 import 'loading_repo_tile.dart';
+import 'repo_tile.dart';
+import '../../../../core/presentation/toasts.dart';
 
 class PaginatedReposListView extends ConsumerStatefulWidget {
   const PaginatedReposListView({super.key});
@@ -16,6 +18,7 @@ class PaginatedReposListView extends ConsumerStatefulWidget {
 
 class _PaginatedReposListViewState extends ConsumerState<PaginatedReposListView> {
   var canLoadNextPage = false;
+  var hasShownToast = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +32,13 @@ class _PaginatedReposListViewState extends ConsumerState<PaginatedReposListView>
           canLoadNextPage = false;
         },
         loadSuccess: (value) {
+          if (!value.repos.isFresh && !hasShownToast) {
+            showNoConnectionToast("You're not online. Some information may be outdated.", context);
+            hasShownToast = true;
+          }
           canLoadNextPage = value.isNextPageAvailable;
         },
         loadFailure: (value) {
-
           canLoadNextPage = false;
         },
       );
@@ -49,7 +55,11 @@ class _PaginatedReposListViewState extends ConsumerState<PaginatedReposListView>
           }
           return false;
         },
-        child: _PaginatedListView(state: state));
+        child: state.maybeMap(orElse: () => false, loadSuccess: (value) => state.repos.entity.isEmpty)
+            ? const NoResultsDisplay(
+                message: 'User does not have any starred repositories.',
+              )
+            : _PaginatedListView(state: state));
   }
 }
 

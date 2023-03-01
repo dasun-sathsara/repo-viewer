@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '../shared/providers.dart';
 
 import '../../auth/shared/providers.dart';
+import '../shared/providers.dart';
 import 'routes/app_router.gr.dart';
 
 final initializationProvider = FutureProvider<void>((ref) async {

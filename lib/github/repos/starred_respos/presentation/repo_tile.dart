@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+
 import '../../../core/domain/github_repo.dart';
 
 class RepoTile extends StatelessWidget {

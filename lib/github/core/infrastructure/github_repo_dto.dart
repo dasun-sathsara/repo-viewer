@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'user_dto.dart';
 
 import '../domain/github_repo.dart';
+import 'user_dto.dart';
 
 part 'github_repo_dto.freezed.dart';
 part 'github_repo_dto.g.dart';
