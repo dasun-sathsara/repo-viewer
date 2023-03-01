@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../core/presentation/toasts.dart';
 import '../../../core/presentation/no_results_page.dart';
 import '../../../core/shared/providers.dart';
 import '../application/starred_repos_notifier.dart';
 import 'failure_repo_tile.dart';
 import 'loading_repo_tile.dart';
 import 'repo_tile.dart';
-import '../../../../core/presentation/toasts.dart';
 
 class PaginatedReposListView extends ConsumerStatefulWidget {
   const PaginatedReposListView({super.key});

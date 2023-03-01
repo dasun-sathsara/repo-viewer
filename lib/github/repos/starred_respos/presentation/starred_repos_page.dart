@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:repoviewer/core/presentation/toasts.dart';
-import '../../../../auth/shared/providers.dart';
+
+import '../../../../core/presentation/toasts.dart';
 import '../../../core/shared/providers.dart';
 import 'paginated_repos_list_view.dart';
 

@@ -19,6 +19,11 @@ class StarredReposLocalService {
         );
   }
 
+  Future<int> getLocalPageCount() async {
+    final records = await _store.count(_sembastDatabase.instance);
+    return (records / PaginationConfig.itemsPerPage).ceil();
+  }
+
   Future<List<GithubRepoDTO>> getPage(int page) async {
     final sembastPage = page - 1;
 

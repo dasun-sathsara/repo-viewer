@@ -4,7 +4,7 @@ import '../../../../core/domain/fresh.dart';
 import '../../../../core/infrastructure/network_exception.dart';
 import '../../../core/domain/github_failure.dart';
 import '../../../core/domain/github_repo.dart';
-import '../../../core/infrastructure/github_repo_dto.dart';
+import '../../core/infrastructure/extensions.dart';
 import 'starred_repos_local_service.dart';
 import 'starred_repos_remote_service.dart';
 
@@ -22,9 +22,9 @@ class StarredReposRepository {
       final remotePageItems = await _remoteService.getStarredReposPage(page);
 
       return right(await remotePageItems.when(
-        noConnection: (maxPage) async {
+        noConnection: () async {
           return Fresh.no(await _localService.getPage(page).then((data) => data.toDomain()),
-              isNextPageAvailable: page < maxPage);
+              isNextPageAvailable: page < await _localService.getLocalPageCount());
         },
         notModified: (maxPage) async {
           return Fresh.yes(
@@ -40,11 +40,5 @@ class StarredReposRepository {
     } on RestApiException catch (e) {
       return left(GithubFailure.api(e.errorCode));
     }
-  }
-}
-
-extension DTOListTODomainList on List<GithubRepoDTO> {
-  List<GithubRepo> toDomain() {
-    return map((e) => e.toDomain()).toList();
   }
 }
