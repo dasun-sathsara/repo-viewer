@@ -1,6 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../core/shared/providers.dart';
+import '../../repos/core/application/repos_notifier.dart';
 import '../../repos/starred_respos/application/starred_repos_notifier.dart';
 import '../../repos/starred_respos/infrastructure/starred_repos_local_service.dart';
 import '../../repos/starred_respos/infrastructure/starred_repos_remote_service.dart';
@@ -33,7 +34,7 @@ final starredReposRepositoryProvider = Provider(
   ),
 );
 
-final starredReposNotifierProvider = StateNotifierProvider<StarredReposNotifier, StarredReposState>(
+final starredReposNotifierProvider = StateNotifierProvider<StarredReposNotifier, ReposState>(
   (ref) => StarredReposNotifier(
     ref.watch(starredReposRepositoryProvider),
   ),

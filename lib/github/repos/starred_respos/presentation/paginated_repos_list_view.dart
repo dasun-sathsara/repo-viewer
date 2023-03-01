@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:repoviewer/github/repos/core/application/repos_notifier.dart';
 
 import '../../../../core/presentation/toasts.dart';
 import '../../../core/presentation/no_results_page.dart';
@@ -68,7 +69,7 @@ class _PaginatedListView extends StatelessWidget {
     required this.state,
   });
 
-  final StarredReposState state;
+  final ReposState state;
 
   @override
   Widget build(BuildContext context) {
