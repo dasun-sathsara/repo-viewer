@@ -39,7 +39,7 @@ class _StarredReposPageState extends ConsumerState<StarredReposPage> {
               icon: const Icon(MdiIcons.logoutVariant)),
           IconButton(
               onPressed: () {
-                AutoRouter.of(context).push(SearchedReposRoute(query: 'react'));
+                AutoRouter.of(context).push(SearchedReposRoute(query: 'arrow'));
               },
               icon: const Icon(MdiIcons.magnify))
         ],
