@@ -11,7 +11,7 @@ class NoResultsDisplay extends StatelessWidget {
       builder: (context, constraints) {
         print(constraints.maxHeight);
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 14.0),
           child: SizedBox(
             height: constraints.maxHeight * 0.8,
             child: Column(

@@ -1,10 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:repoviewer/core/presentation/routes/app_router.gr.dart';
 
 import '../../../../core/presentation/toasts.dart';
 import '../../../core/shared/providers.dart';
-import 'paginated_repos_list_view.dart';
+import '../../core/presentation/paginated_repos_list_view.dart';
 
 class StarredReposPage extends ConsumerStatefulWidget {
   const StarredReposPage({super.key});
@@ -34,10 +36,19 @@ class _StarredReposPageState extends ConsumerState<StarredReposPage> {
                 );
                 // ref.read(authNotifierProvider.notifier).signOut();
               },
-              icon: const Icon(MdiIcons.logoutVariant))
+              icon: const Icon(MdiIcons.logoutVariant)),
+          IconButton(
+              onPressed: () {
+                AutoRouter.of(context).push(SearchedReposRoute(query: 'react'));
+              },
+              icon: const Icon(MdiIcons.magnify))
         ],
       ),
-      body: const PaginatedReposListView(),
+      body: PaginatedReposListView(
+          starredReposNotifierProvider,
+          (ref) => ref.read(starredReposNotifierProvider.notifier).getNextStarredReposPage(),
+          'User does not have any starred repositories',
+          'You are not online. Some information might be outdated.'),
     );
   }
 }
