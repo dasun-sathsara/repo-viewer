@@ -63,6 +63,7 @@ class _SearchBarState extends ConsumerState<SearchBar> {
       height: 58,
       borderRadius: BorderRadius.circular(8),
       controller: _controller,
+      implicitDuration: const Duration(milliseconds: 300),
       body: FloatingSearchBarScrollNotifier(child: widget.body),
       hint: widget.hint,
       title: Column(

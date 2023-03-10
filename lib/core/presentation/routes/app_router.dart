@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:repoviewer/github/repos/searched_repos/presentation/searched_repos_page.dart';
+import '../../../github/repos/searched_repos/presentation/searched_repos_page.dart';
 import '../../../github/repos/starred_respos/presentation/starred_repos_page.dart';
 
 import '../../../auth/presentation/auth_page.dart';

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../auth/shared/providers.dart';
 import '../../../../core/presentation/routes/app_router.gr.dart';
 import '../../../../search/presentation/search_bar.dart';
 import '../../../core/shared/providers.dart';
@@ -35,7 +36,7 @@ class _SearchedReposPageState extends ConsumerState<SearchedReposPage> {
         );
       },
       onSignOutButtonPressed: () {
-        // ref.read(authNotifierProvider.notifier).signOut();
+        ref.read(authNotifierProvider.notifier).signOut();
       },
       body: PaginatedReposListView(searchedReposNotifierProvider, (ref) {
         ref.read(searchedReposNotifierProvider.notifier).getNextSearchedReposPage(widget.query);

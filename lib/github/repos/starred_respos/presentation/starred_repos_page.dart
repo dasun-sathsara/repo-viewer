@@ -1,12 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:repoviewer/core/presentation/routes/app_router.gr.dart';
-import 'package:repoviewer/search/presentation/search_bar.dart';
 
 import '../../../../auth/shared/providers.dart';
-import '../../../../core/presentation/toasts.dart';
+import '../../../../core/presentation/routes/app_router.gr.dart';
+import '../../../../search/presentation/search_bar.dart';
 import '../../../core/shared/providers.dart';
 import '../../core/presentation/paginated_repos_list_view.dart';
 
@@ -34,7 +32,7 @@ class _StarredReposPageState extends ConsumerState<StarredReposPage> {
           AutoRouter.of(context).push(SearchedReposRoute(query: query));
         },
         onSignOutButtonPressed: () {
-          // ref.read(authNotifierProvider.notifier).signOut();
+          ref.read(authNotifierProvider.notifier).signOut();
         },
         body: PaginatedReposListView(
             starredReposNotifierProvider,

@@ -1,10 +1,10 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:repoviewer/github/repos/searched_repos/application/searched_repos_notifier.dart';
-import 'package:repoviewer/github/repos/searched_repos/infrastructure/searched_repos_remote_service.dart';
-import 'package:repoviewer/github/repos/searched_repos/infrastructure/searched_repos_repository.dart';
 
 import '../../../core/shared/providers.dart';
 import '../../repos/core/application/repos_notifier.dart';
+import '../../repos/searched_repos/application/searched_repos_notifier.dart';
+import '../../repos/searched_repos/infrastructure/searched_repos_remote_service.dart';
+import '../../repos/searched_repos/infrastructure/searched_repos_repository.dart';
 import '../../repos/starred_respos/application/starred_repos_notifier.dart';
 import '../../repos/starred_respos/infrastructure/starred_repos_local_service.dart';
 import '../../repos/starred_respos/infrastructure/starred_repos_remote_service.dart';

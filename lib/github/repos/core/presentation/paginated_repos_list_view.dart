@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 import '../../../../core/presentation/toasts.dart';
 import '../../../core/presentation/no_results_page.dart';
@@ -7,7 +8,6 @@ import '../application/repos_notifier.dart';
 import 'failure_repo_tile.dart';
 import 'loading_repo_tile.dart';
 import 'repo_tile.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class PaginatedReposListView extends ConsumerStatefulWidget {
   final AutoDisposeStateNotifierProvider<ReposNotifier, ReposState> reposNotifierProvider;
