@@ -80,6 +80,24 @@ class _SearchBarState extends ConsumerState<SearchBar> {
           ),
         ],
       ),
+      leadingActions: [
+        if (AutoRouter.of(context).canPop() && (Platform.isIOS || Platform.isMacOS))
+          IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            splashRadius: 18,
+            onPressed: () {
+              AutoRouter.of(context).pop();
+            },
+          )
+        else if (AutoRouter.of(context).canPop())
+          IconButton(
+            icon: const Icon(Icons.arrow_back),
+            splashRadius: 18,
+            onPressed: () {
+              AutoRouter.of(context).pop();
+            },
+          )
+      ],
       actions: [
         FloatingSearchBarAction.searchToClear(
           showIfClosed: false,
@@ -100,7 +118,7 @@ class _SearchBarState extends ConsumerState<SearchBar> {
       onQueryChanged: (query) {
         ref.read(searchHistoryNotifierProvider.notifier).watchSearchTerms(filter: query);
       },
-      automaticallyImplyBackButton: true,
+      automaticallyImplyBackButton: false,
       builder: (context, transition) {
         return Material(
           color: Theme.of(context).cardColor,
