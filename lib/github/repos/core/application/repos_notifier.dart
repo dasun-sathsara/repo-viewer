@@ -34,6 +34,13 @@ class ReposNotifier extends StateNotifier<ReposState> {
 
   int _page = 1;
 
+  @protected
+  void resetState() {
+    _page = 1;
+    state = ReposState.initial(Fresh.yes([]));
+  }
+
+  @protected
   Future<void> getNextPage(RepositoryGetter getter) async {
     state = ReposState.loadInProgress(state.repos, PaginationConfig.itemsPerPage);
 

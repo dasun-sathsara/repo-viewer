@@ -16,15 +16,12 @@ import 'package:flutter/material.dart' as _i7;
 
 import '../../../auth/presentation/auth_page.dart' as _i3;
 import '../../../auth/presentation/sign_in_page.dart' as _i2;
-import '../../../github/repos/searched_repos/presentation/searched_repos_page.dart'
-    as _i5;
-import '../../../github/repos/starred_respos/presentation/starred_repos_page.dart'
-    as _i4;
+import '../../../github/repos/searched_repos/presentation/searched_repos_page.dart' as _i5;
+import '../../../github/repos/starred_respos/presentation/starred_repos_page.dart' as _i4;
 import '../../../splash/presentation/splash_page.dart' as _i1;
 
 class AppRouter extends _i6.RootStackRouter {
-  AppRouter([_i7.GlobalKey<_i7.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+  AppRouter([_i7.GlobalKey<_i7.NavigatorState>? navigatorKey]) : super(navigatorKey);
 
   @override
   final Map<String, _i6.PageFactory> pagesMap = {
@@ -46,8 +43,7 @@ class AppRouter extends _i6.RootStackRouter {
         routeData: routeData,
         child: _i3.GithubAuthPage(
           key: args.key,
-          onAuthorizationCodeRedirectAttempt:
-              args.onAuthorizationCodeRedirectAttempt,
+          onAuthorizationCodeRedirectAttempt: args.onAuthorizationCodeRedirectAttempt,
           authorizationUrl: args.authorizationUrl,
         ),
       );
@@ -131,8 +127,7 @@ class GithubAuthRoute extends _i6.PageRouteInfo<GithubAuthRouteArgs> {
           path: '/auth',
           args: GithubAuthRouteArgs(
             key: key,
-            onAuthorizationCodeRedirectAttempt:
-                onAuthorizationCodeRedirectAttempt,
+            onAuthorizationCodeRedirectAttempt: onAuthorizationCodeRedirectAttempt,
             authorizationUrl: authorizationUrl,
           ),
         );

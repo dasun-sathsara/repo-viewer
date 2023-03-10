@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:repoviewer/core/presentation/routes/app_router.gr.dart';
+import 'package:repoviewer/search/presentation/search_bar.dart';
 
+import '../../../../auth/shared/providers.dart';
 import '../../../../core/presentation/toasts.dart';
 import '../../../core/shared/providers.dart';
 import '../../core/presentation/paginated_repos_list_view.dart';
@@ -25,30 +27,21 @@ class _StarredReposPageState extends ConsumerState<StarredReposPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Starred Repos'),
-        actions: [
-          IconButton(
-              onPressed: () {
-                showNoConnectionToast(
-                  "You're not online. Some information may be outdated.",
-                  context,
-                );
-                // ref.read(authNotifierProvider.notifier).signOut();
-              },
-              icon: const Icon(MdiIcons.logoutVariant)),
-          IconButton(
-              onPressed: () {
-                AutoRouter.of(context).push(SearchedReposRoute(query: 'arrow'));
-              },
-              icon: const Icon(MdiIcons.magnify))
-        ],
+      body: SearchBar(
+        title: 'Starred Repositories',
+        hint: 'Search all repositories...',
+        onShouldNavigateToResultPage: (query) {
+          AutoRouter.of(context).push(SearchedReposRoute(query: query));
+        },
+        onSignOutButtonPressed: () {
+          // ref.read(authNotifierProvider.notifier).signOut();
+        },
+        body: PaginatedReposListView(
+            starredReposNotifierProvider,
+            (ref) => ref.read(starredReposNotifierProvider.notifier).getNextStarredReposPage(),
+            'User does not have any starred repositories',
+            'You are not online. Some information might be outdated.'),
       ),
-      body: PaginatedReposListView(
-          starredReposNotifierProvider,
-          (ref) => ref.read(starredReposNotifierProvider.notifier).getNextStarredReposPage(),
-          'User does not have any starred repositories',
-          'You are not online. Some information might be outdated.'),
     );
   }
 }

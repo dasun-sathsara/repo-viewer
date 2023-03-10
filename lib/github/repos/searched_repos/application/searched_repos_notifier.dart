@@ -6,6 +6,11 @@ class SearchedReposNotifier extends ReposNotifier {
 
   SearchedReposNotifier(this._repository);
 
+  Future<void> getFirstSearchedReposPage(String query) async {
+    super.resetState();
+    super.getNextPage((page) => _repository.getSearchedReposPage(query, page));
+  }
+
   Future<void> getNextSearchedReposPage(String query) async {
     super.getNextPage((page) => _repository.getSearchedReposPage(query, page));
   }
