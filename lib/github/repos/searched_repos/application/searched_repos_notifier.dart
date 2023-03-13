@@ -1,5 +1,5 @@
-import '../infrastructure/searched_repos_repository.dart';
 import '../../core/application/repos_notifier.dart';
+import '../infrastructure/searched_repos_repository.dart';
 
 class SearchedReposNotifier extends ReposNotifier {
   final SearchedRemoteRepository _repository;

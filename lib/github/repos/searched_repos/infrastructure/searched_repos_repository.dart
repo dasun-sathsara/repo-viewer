@@ -1,10 +1,10 @@
 import 'package:fpdart/fpdart.dart';
-import '../../core/infrastructure/extensions.dart';
 
 import '../../../../core/domain/fresh.dart';
 import '../../../../core/infrastructure/network_exception.dart';
 import '../../../core/domain/github_failure.dart';
 import '../../../core/domain/github_repo.dart';
+import '../../core/infrastructure/extensions.dart';
 import 'searched_repos_remote_service.dart';
 
 class SearchedRemoteRepository {
