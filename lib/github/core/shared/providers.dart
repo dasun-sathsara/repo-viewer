@@ -1,6 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:repoviewer/github/detail/infrastructure/repo_detail_local_service.dart';
-import 'package:repoviewer/github/detail/infrastructure/repo_detail_repository.dart';
+import '../../detail/infrastructure/repo_detail_local_service.dart';
+import '../../detail/infrastructure/repo_detail_repository.dart';
 
 import '../../../core/shared/providers.dart';
 import '../../detail/application/repo_detail_notifier.dart';

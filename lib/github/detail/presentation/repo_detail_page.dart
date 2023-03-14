@@ -2,13 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:repoviewer/core/presentation/toasts.dart';
-import 'package:repoviewer/github/core/domain/github_repo.dart';
-import 'package:repoviewer/github/core/presentation/no_results_page.dart';
-import 'package:repoviewer/github/core/shared/providers.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
+import 'package:webview_flutter/webview_flutter.dart';
+
+import '../../../core/presentation/toasts.dart';
+import '../../core/domain/github_repo.dart';
+import '../../core/presentation/no_results_page.dart';
+import '../../core/shared/providers.dart';
 
 class RepoDetailsPage extends ConsumerStatefulWidget {
   final GithubRepo repo;
@@ -62,7 +63,7 @@ class _RepoDetailPageState extends ConsumerState<RepoDetailsPage> {
     return WillPopScope(
       onWillPop: () async {
         if (state.hasStarredStatusChanged) {
-          ref.read(starredReposNotifierProvider.notifier).getFirstStarredReposPage();
+          await ref.read(starredReposNotifierProvider.notifier).getFirstStarredReposPage();
         }
         return true;
       },
@@ -130,7 +131,6 @@ class _RepoDetailPageState extends ConsumerState<RepoDetailsPage> {
                     <meta charset="UTF-8">
                     <meta http-equiv="X-UA-Compatible" content="IE=edge">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Document</title>
                 </head>
                 <body>
                     ${_.repoDetail.entity!.html}

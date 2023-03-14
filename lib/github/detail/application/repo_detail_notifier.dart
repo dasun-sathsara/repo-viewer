@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:repoviewer/github/core/domain/github_failure.dart';
-import 'package:repoviewer/github/detail/domain/github_repo_detail.dart';
-import 'package:repoviewer/github/detail/infrastructure/repo_detail_repository.dart';
+import '../../core/domain/github_failure.dart';
+import '../domain/github_repo_detail.dart';
+import '../infrastructure/repo_detail_repository.dart';
 
 import '../../../core/domain/fresh.dart';
 

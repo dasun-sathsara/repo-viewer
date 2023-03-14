@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:repoviewer/core/infrastructure/dio_extension.dart';
-import 'package:repoviewer/core/infrastructure/remote_response.dart';
-import 'package:repoviewer/github/core/infrastructure/github_headers_cache.dart';
+import '../../../core/infrastructure/dio_extension.dart';
+import '../../../core/infrastructure/remote_response.dart';
+import '../../core/infrastructure/github_headers_cache.dart';
 
 import '../../../core/infrastructure/network_exception.dart';
 import '../../core/infrastructure/github_headers.dart';
