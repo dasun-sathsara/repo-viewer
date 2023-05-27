@@ -43,9 +43,16 @@ dev_dependencies:
     flutter_test:
         sdk: flutter
     freezed: ^2.3.2
+    flutter_launcher_icons: '^0.13.1'
 
 flutter:
     uses-material-design: true
     assets:
         - .env
         - assets/css/styles.css
+
+flutter_launcher_icons:
+    android: true
+    ios: true
+    image_path: 'assets/icon/github.png'
+    min_sdk_android: 21

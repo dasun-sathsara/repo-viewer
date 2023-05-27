@@ -31,7 +31,8 @@ class GithubAuthenticator {
   static const scopes = ['read:user', 'repo'];
   static final authorizationEndpoint = Uri.parse('https://github.com/login/oauth/authorize');
   static final tokenEndpoint = Uri.parse('https://github.com/login/oauth/access_token');
-  static final revocationEndpoint = Uri.parse('https://api.github.com/application/$clientId/token');
+  static final revocationEndpoint =
+      Uri.parse('https://api.github.com/application/$clientId/token');
   static final redirectUrl = Uri.parse('http://localhost:3000/callback');
 
   Future<Credentials?> getSignedInCredentials() async {
@@ -43,7 +44,8 @@ class GithubAuthenticator {
     }
   }
 
-  Future<bool> isSignedIn() => getSignedInCredentials().then((credentials) => credentials != null);
+  Future<bool> isSignedIn() =>
+      getSignedInCredentials().then((credentials) => credentials != null);
 
   AuthorizationCodeGrant createGrant() {
     return AuthorizationCodeGrant(
@@ -78,7 +80,8 @@ class GithubAuthenticator {
 
   Future<Either<AuthFailure, Unit>> signOut() async {
     try {
-      final accessToken = await _credentialStorage.read().then((credentials) => credentials?.accessToken);
+      final accessToken =
+          await _credentialStorage.read().then((credentials) => credentials?.accessToken);
       final usernameAndPassword = stringToBase64.encode('$clientId:$clientSecret');
 
       try {
